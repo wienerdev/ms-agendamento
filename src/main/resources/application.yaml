@@ -1,0 +1,42 @@
+server:
+  port: 8040
+  name: Ms Agendamento
+
+spring:
+  application:
+    name: ms-agendamento
+  data:
+    mongodb:
+      auto-index-creation: true
+      uri: mongodb://localhost:27017/user-blood-testing?retryWrites=true&w=majority
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: local-vh
+  main:
+    allow-bean-definition-overriding: true
+
+management:
+  endpoint:
+    health:
+      group:
+        custom:
+          show-components: always
+          show-details: always
+
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - beans
+          - env
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8090/eureka
